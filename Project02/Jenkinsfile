@@ -4,21 +4,21 @@ pipeline {
         stage ('Compile Stage') {
             steps {
                 withMaven(maven : 'Maven3.6') {
-                    bat 'mvn -f pom.xml clean compile'
+                    bat 'mvn -f Project02/pom.xml clean compile'
                    }
             }
         }
         stage ('Testing Stage') {
             steps {
                 withMaven(maven : 'Maven3.6') {
-                    bat 'mvn -f pom.xml test'
+                    bat 'mvn -f Project02/pom.xml test'
                 }
             }
         }
         stage ('Deployment Stage') {
             steps {
                 withMaven(maven : 'Maven3.6') {
-                    bat 'mvn -f pom.xml deploy'
+                    bat 'mvn -f Project02/pom.xml deploy'
                 }
             }
         }
