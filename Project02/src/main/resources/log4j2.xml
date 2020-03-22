@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="WARN">
+<Configuration status="OFF">
   <Appenders>
     <Console name="Console" target="SYSTEM_OUT">
       <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
     </Console>
   </Appenders>
   <Loggers>
-  	<Logger name="com.project" level="trace" additivity="false">
+  	<Logger name="com.project" level="trace" additivity="off">
   		  <AppenderRef ref="Console"/>
   	</Logger>
-  	<Logger name="org.springframework.boot" level="debug" additivity="false">
+  	<Logger name="org.springframework.boot" level="off" additivity="false">
   		  <AppenderRef ref="Console"/>
   	</Logger>
-  	<Logger name="org.springframework.core" level="debug" additivity="false">
+  	<Logger name="org.springframework.core" level="off" additivity="false">
   		  <AppenderRef ref="Console"/>
   	</Logger>
-    <Root level="error">
+    <Root level="off">
       <AppenderRef ref="Console"/>
     </Root>
   </Loggers>
