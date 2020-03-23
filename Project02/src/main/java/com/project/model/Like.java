@@ -28,7 +28,7 @@ public class Like {
 
 	public Like(User user, long r_id, Boolean isLiked) {
 	
-
+		this.user=user;
 		this.r_id = r_id;
 		this.isLiked = isLiked;
 	}
