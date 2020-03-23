@@ -10,26 +10,23 @@ import javax.persistence.Table;
 @Table(name = "project_restaurant")
 public class Restaurant {
 	
-	private String id;
+	private long id;
 	private String name;
 	private String location;
-	private String webUrl;
-	private String imageUrl;
+	private String web_url;
+	private String image_url;
 	
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	public String getId() {
+	public long getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	
-	
-	
 	public Restaurant() {
-		super();
 	}
 	@Column
 	public String getName() {
@@ -45,19 +42,19 @@ public class Restaurant {
 	public void setLocation(String location) {
 		this.location = location;
 	}
-	@Column
-	public String getImageUrl() {
-		return imageUrl;
+	@Column(name="image_url")
+	public String getImage_url() {
+		return image_url;
 	}
-	public void setImageUrl(String imageUrl) {
-		this.imageUrl = imageUrl;
+	public void setImage_url(String image_url) {
+		this.image_url = image_url;
 	}
-	@Column
-	public String getWebUrl() {
-		return webUrl;
+	@Column(name="web_url")
+	public String getWeb_url() {
+		return web_url;
 	}
-	public void setWebUrl(String webUrl) {
-		this.webUrl = webUrl;
+	public void setWeb_url(String webUrl) {
+		this.web_url = webUrl;
 	}
 	
 	

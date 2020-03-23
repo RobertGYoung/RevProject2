@@ -1,6 +1,7 @@
 package com.project.model;
 
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "project_like")
 public class Like {
@@ -17,21 +20,21 @@ public class Like {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	private long r_id;
-	private Boolean isLiked;
+	private boolean is_liked;
 	
 
-	@ManyToOne
-	@JoinColumn
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name="user_id")
 	private User user;
 	public Like() {
 	}
-
-	public Like(User user, long r_id, Boolean isLiked) {
-	
-		this.user=user;
-		this.r_id = r_id;
-		this.isLiked = isLiked;
-	}
+//
+//	public Like(User user, long r_id, Boolean isLiked) {
+//	
+//		this.user = user;
+//		this.r_id = r_id;
+//		this.isLiked = isLiked;
+//	}
 	
 	
 
@@ -56,23 +59,35 @@ public class Like {
 		this.r_id = r_id;
 	}
 
-	@Column(name = "isLiked", nullable = false)
+	@Column(name = "is_liked", nullable = false)
 
-	public Boolean getIsLiked() {
-		return isLiked;
+	public boolean getIs_liked() {
+		return is_liked;
 	}
 
-	public void setIsLiked(Boolean isLiked) {
-		this.isLiked = isLiked;
-	}
-
-	@Override
-	public String toString() {
-		return "Like [id=" + id + ", r_id=" + r_id + ", isLiked=" + isLiked + ", user=" + user + "]";
+	public void setIs_liked(boolean is_liked) {
+		this.is_liked = is_liked;
 	}
 
 	
+	public long getUserId() {
+		return user.getId();
+	}
+	
+	
+    @JsonIgnore
+    public User getUser() {
+        return user;
+    }
 
-
-
+    @JsonIgnore
+    public void setUser(User user) {
+        this.user = user;
+    }
+	
+	
+	@Override
+	public String toString() {
+		return "Like [id=" + id + ", r_id=" + r_id + ", is_Liked=" + is_liked + ", user=" + user + "]";
+	}
 }

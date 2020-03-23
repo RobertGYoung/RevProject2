@@ -1,6 +1,7 @@
 package com.project.model;
 
 
+import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
 
@@ -24,13 +25,11 @@ public class User {
 	private String password;
 	private String location;
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-	private Set<Like> likes;
+	private Set<Like> likes = new HashSet<>();
 	
 	
 	
 	public User() {
-		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public User(String username, String password, String location) {
