@@ -26,6 +26,11 @@ public class Restaurant {
 		this.id = id;
 	}
 	
+	
+	
+	public Restaurant() {
+		super();
+	}
 	@Column
 	public String getName() {
 		return name;
