@@ -32,6 +32,8 @@ public class Like {
 		this.r_id = r_id;
 		this.isLiked = isLiked;
 	}
+	
+	
 
 	@Column
 	public long getId() {

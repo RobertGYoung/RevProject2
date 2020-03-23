@@ -27,6 +27,12 @@ public class User {
 	private Set<Like> likes;
 	
 	
+	
+	public User() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public User(String username, String password, String location) {
 		this.username = username;
 		this.password= password;
