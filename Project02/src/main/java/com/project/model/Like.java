@@ -18,7 +18,7 @@ public class Like {
 	private long id;
 	private long r_id;
 	private Boolean isLiked;
-	private long u_id;
+	
 
 	@ManyToOne
 	@JoinColumn
@@ -26,9 +26,9 @@ public class Like {
 	public Like() {
 	}
 
-	public Like(long u_id, long r_id, Boolean isLiked) {
+	public Like(User user, long r_id, Boolean isLiked) {
 	
-		this.u_id = u_id;
+
 		this.r_id = r_id;
 		this.isLiked = isLiked;
 	}
@@ -44,14 +44,7 @@ public class Like {
 		this.id = id;
 	}
 
-	@Column(name = "u_id", nullable = false)
-	public long getU_id() {
-		return u_id;
-	}
-
-	public void setU_id(long u_id) {
-		this.u_id = u_id;
-	}
+	
 
 	@Column(name = "r_id", nullable = false)
 
@@ -75,9 +68,10 @@ public class Like {
 
 	@Override
 	public String toString() {
-		return "Like [id=" + id + ", r_id=" + r_id + ", isLiked=" + isLiked + ", u_id=" + u_id + "]";
+		return "Like [id=" + id + ", r_id=" + r_id + ", isLiked=" + isLiked + ", user=" + user + "]";
 	}
 
+	
 
 
 
