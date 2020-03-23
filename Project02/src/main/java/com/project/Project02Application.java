@@ -14,8 +14,6 @@ private static final Logger logger=LogManager.getLogger(Project02Application.cla
 		logger.info("Started Application- logger message");
 		
 	SpringApplication.run(Project02Application.class, args);
-		
-	
 		logger.info("Ending Application- logger message");
  
 	}
