@@ -1,6 +1,5 @@
 package com.project.model;
 
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,22 +20,20 @@ public class Like {
 	private long id;
 	private long r_id;
 	private boolean is_liked;
-	
 
 	@ManyToOne(cascade = CascadeType.PERSIST)
-	@JoinColumn(name="user_id")
+	@JoinColumn(name = "user_id")
 	private User user;
+
 	public Like() {
 	}
-//
-//	public Like(User user, long r_id, Boolean isLiked) {
-//	
-//		this.user = user;
-//		this.r_id = r_id;
-//		this.isLiked = isLiked;
-//	}
+
+	public Like(User user, long r_id, Boolean isLiked) {
 	
-	
+		this.user = user;
+		this.r_id = r_id;
+		this.is_liked = isLiked;
+	}
 
 	@Column
 	public long getId() {
@@ -46,8 +43,6 @@ public class Like {
 	public void setId(long id) {
 		this.id = id;
 	}
-
-	
 
 	@Column(name = "r_id", nullable = false)
 
@@ -69,23 +64,20 @@ public class Like {
 		this.is_liked = is_liked;
 	}
 
-	
 	public long getUserId() {
 		return user.getId();
 	}
-	
-	
-    @JsonIgnore
-    public User getUser() {
-        return user;
-    }
 
-    @JsonIgnore
-    public void setUser(User user) {
-        this.user = user;
-    }
-	
-	
+	@JsonIgnore
+	public User getUser() {
+		return user;
+	}
+
+	@JsonIgnore
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	@Override
 	public String toString() {
 		return "Like [id=" + id + ", r_id=" + r_id + ", is_Liked=" + is_liked + ", user=" + user + "]";
