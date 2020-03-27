@@ -29,6 +29,14 @@ public class User {
 	
 	
 	
+	public Set<Like> getLikes() {
+		return likes;
+	}
+
+	public void setLikes(Set<Like> likes) {
+		this.likes = likes;
+	}
+
 	public User() {
 	}
 
