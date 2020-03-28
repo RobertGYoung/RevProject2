@@ -17,6 +17,7 @@ import { IndexComponent } from './index/index.component';
 import { Header2Component } from './header2/header2.component';
 import { ProfileComponent } from './profile/profile.component';
 import { CurrentUserDetailsComponent } from './current-user-details/current-user-details.component';
+import { PasswordResetComponent } from './password-reset/password-reset.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { CurrentUserDetailsComponent } from './current-user-details/current-user
     IndexComponent,
     Header2Component,
     ProfileComponent,
-    CurrentUserDetailsComponent
+    CurrentUserDetailsComponent,
+    PasswordResetComponent
     
   ],
   imports: [

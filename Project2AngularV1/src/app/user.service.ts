@@ -25,6 +25,10 @@ export class UserService {
     return this.http.put(`${this.baseUrl}/${id}`, value);
   }
 
+  patchUser(id: number, value: any): Observable<Object> {
+    return this.http.patch(`${this.baseUrl}/${id}`, value);
+  }
+
   deleteUser(id: number): Observable<any> {
     return this.http.delete(`${this.baseUrl}/${id}`, { responseType: 'text' });
   }

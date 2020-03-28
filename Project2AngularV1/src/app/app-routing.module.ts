@@ -6,6 +6,8 @@ import { RegisterComponent } from './register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {ProfileComponent} from './profile/profile.component';
 import { AddFriendComponent } from './add-friend/add-friend.component';
+
+import {PasswordResetComponent} from './password-reset/password-reset.component';
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   
@@ -15,7 +17,8 @@ const routes: Routes = [
    {path: 'profile/:id',component: ProfileComponent},
    {path: 'profile',component: ProfileComponent},
    {path: 'addFriend/:id', component : AddFriendComponent},
-   {path: 'addFriend', component : AddFriendComponent}
+   {path: 'addFriend', component : AddFriendComponent},
+   {path: 'passwordreset', component: PasswordResetComponent }
 ];
 
 @NgModule({
