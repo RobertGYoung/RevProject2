@@ -29,6 +29,11 @@ public class User {
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private Set<FriendList> friends = new HashSet<>();
 	
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private Set<FriendList> friends = new HashSet<>();
+	
+	
+	
 	public Set<FriendList> getFriends() {
 		return friends;
 	}
