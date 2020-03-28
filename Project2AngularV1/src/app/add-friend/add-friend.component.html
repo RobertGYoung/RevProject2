@@ -3,3 +3,15 @@
 <br/>
 <br/>
 <h1>Add a friend</h1>
+<form (ngSubmit)="findFriend($event)">
+
+    <div class="form-group">
+      <label for="friendUsername">Seach for a friend:</label>
+      <input type="text" class="form-control" id="friendUsername" name="friendUsername" required [()]="user.password" >
+    </div>
+    <div [hidden]="!authenticated">
+      <h4 class="text-danger">No user found</h4>
+    </div>
+
+    <button type="submit" class="btn btn-success">Search</button>
+</form>
