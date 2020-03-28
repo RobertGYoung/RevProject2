@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.PostConstruct;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,7 @@ import com.project.service.LikeService;
 @CrossOrigin(origins = "*")
 @RequestMapping("/api/v1")
 public class LikeController {
-
+	
 	@Autowired
 	private LikeRepository likeRepo;
 

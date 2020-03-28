@@ -17,7 +17,12 @@ import { IndexComponent } from './index/index.component';
 import { Header2Component } from './header2/header2.component';
 import { ProfileComponent } from './profile/profile.component';
 import { CurrentUserDetailsComponent } from './current-user-details/current-user-details.component';
+<<<<<<< HEAD
 import { PasswordResetComponent } from './password-reset/password-reset.component';
+=======
+import { RestaurantDisplayComponent } from './restaurant-display/restaurant-display.component';
+
+>>>>>>> abaf1ff7cafe532610d2fb8102800c21eb05241b
 
 
 @NgModule({
@@ -33,7 +38,12 @@ import { PasswordResetComponent } from './password-reset/password-reset.componen
     Header2Component,
     ProfileComponent,
     CurrentUserDetailsComponent,
+<<<<<<< HEAD
     PasswordResetComponent
+=======
+    RestaurantDisplayComponent,
+
+>>>>>>> abaf1ff7cafe532610d2fb8102800c21eb05241b
     
   ],
   imports: [
