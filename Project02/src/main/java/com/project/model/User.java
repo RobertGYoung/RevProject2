@@ -1,6 +1,5 @@
 package com.project.model;
 
-
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
@@ -15,7 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="project_user")
+@Table(name = "project_user")
 
 public class User {
 	@Id
@@ -26,13 +25,10 @@ public class User {
 	private String location;
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private Set<Like> likes = new HashSet<>();
-	
-	
+
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private Set<FriendList> friends = new HashSet<>();
-	
-	
-	
+
 	public Set<FriendList> getFriends() {
 		return friends;
 	}
@@ -54,49 +50,49 @@ public class User {
 
 	public User(String username, String password, String location) {
 		this.username = username;
-		this.password= password;
-		this.location= location;
-		
+		this.password = password;
+		this.location = location;
+
 	}
-	
+
 	public long getId() {
 		return id;
 	}
-	
+
 	public void setId(long id) {
 		this.id = id;
 	}
+
 	@Column
 	public String getUsername() {
 		return username;
 	}
+
 	public void setUsername(String username) {
 		this.username = username;
 	}
+
 	@Column
 	public String getPassword() {
 		return password;
 	}
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
 	@Column
 	public String getLocation() {
 		return location;
 	}
+
 	public void setLocation(String location) {
 		this.location = location;
 	}
-	public Set<Like> getLikes(){
-		return likes;
-	}
-	
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", password=" + password + ", location=" + location + "]";
 	}
-	
-	
-	
-	
+
 }
