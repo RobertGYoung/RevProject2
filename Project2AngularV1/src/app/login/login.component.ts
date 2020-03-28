@@ -36,6 +36,8 @@ export class LoginComponent implements OnInit {
                     // this.user.location=obj.location;
                     console.log(this.user.location)
                     this.userService.saveUserToSession(this.user);
+                    localStorage.setItem('User', JSON.stringify(this.userService.currentUser));
+                  
                   this.goToDashUserDashboard()
                   
                 }

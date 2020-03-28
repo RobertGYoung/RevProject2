@@ -16,9 +16,18 @@ export class RestaurantDisplayComponent implements OnInit {
   
 
   ngOnInit(): void {
-    this.restaurants= this.restaurantService.getRestaurantList().subscribe();
-    console.log(this.restaurants);
-  }
+    this.restaurants= this.restaurantService.getRestaurantList().subscribe(
+      data => {  
+        this.restaurants = data;
+            for(let obj of this.restaurants){
+              this.restaurant=obj;
+              console.log(this.restaurant.web_url)
+              this.restaurantService.saveRestaurantsToSession(this.restaurants);
+                }
+           }
+      )
+      
+}
   clickNext(){
     if(this.currentIndex < this.restaurants.length)
     this.currentIndex++;

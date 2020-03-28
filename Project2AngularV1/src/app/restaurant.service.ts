@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class RestaurantService {
 
   private baseUrl = 'http://localhost:9090/api/v1/restaurants';
-  currentRestaurant:Restaurant;
+  currentRestaurants:Restaurant[];
   
   constructor(private http: HttpClient) { }
   getRestaurant(id: number): Observable<any> {
@@ -18,10 +18,10 @@ export class RestaurantService {
   getRestaurantList(): Observable<any> {
     return this.http.get(`${this.baseUrl}`);
   }
-  saveRestaurantToSession(restaurant:Restaurant){
-    this.currentRestaurant=restaurant;
+  saveRestaurantsToSession(restaurants:Restaurant[]){
+    this.currentRestaurants=restaurants;
   }
-  showUserInSession(){
-    return this.currentRestaurant;
+  showRestaurantsInSession(){
+    return this.currentRestaurants;
   }
 }

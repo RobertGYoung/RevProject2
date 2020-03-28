@@ -2,6 +2,7 @@ export class Restaurant{
     id: number;
     location: string;
     name: string;
-    webUrl: string;
+    image_url:string;
+    web_url: string;
 
 }
