@@ -14,8 +14,10 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.project.model.Like;
+import com.project.model.Restaurant;
 import com.project.model.User;
 import com.project.repository.LikeRepository;
+import com.project.repository.RestaurantRepository;
 import com.project.repository.UserRepository;
 
 @RunWith(SpringRunner.class)
@@ -30,6 +32,9 @@ class Project02ApplicationTests {
 
 	@Autowired
 	private LikeRepository likeRepository;
+	
+	@Autowired
+	private RestaurantRepository restRepo;
 
 	@AfterEach
 	public void teardown() {
@@ -45,6 +50,11 @@ class Project02ApplicationTests {
 		User u2 = new User("Sally", "sally", "there");
 		Like l1 = new Like(u1, 1, true);
 		Like l2 = new Like(u1, 1, false);
+		Restaurant r1 = new Restaurant();
+		r1.setLocation("Denver");
+		Restaurant r2 = new Restaurant();
+		entityManager.persistAndFlush(r1);
+		entityManager.persistAndFlush(r2);
 		entityManager.persistAndFlush(u1);
 		entityManager.persistAndFlush(u2);
 		entityManager.persistAndFlush(l1);
@@ -102,5 +112,13 @@ class Project02ApplicationTests {
 		userRepository.flush();
 
 		assertTrue(userRepository.count() == 3);
+	}
+	
+	@Test
+	public void RestaurantbyLocationTest() {
+		System.out.println("Denver");
+		List<Restaurant> restaurants=  restRepo.byLocation("Denver");
+		System.out.println(restaurants);
+		assertTrue(restaurants.size()==1);
 	}
 }

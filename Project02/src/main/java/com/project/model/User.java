@@ -67,6 +67,10 @@ public class User {
 	public void setLocation(String location) {
 		this.location = location;
 	}
+	public Set<Like> getLikes(){
+		return likes;
+	}
+	
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", password=" + password + ", location=" + location + "]";
