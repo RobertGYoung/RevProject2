@@ -20,9 +20,8 @@ export class DashboardComponent implements OnInit {
     this.route.paramMap
       .subscribe(params => {
 
-        this.currentUser= this.userService.showUserInSession();
-        // this.currentUser.username=params.get('username');
-        // this.currentUser.id=parseInt(params.get('id'));
+        
+        this.currentUser= JSON.parse(localStorage.getItem('User'));
        
 
       });

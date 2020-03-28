@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import org.springframework.web.bind.annotation.PostMapping;
@@ -64,5 +65,14 @@ public class UserController {
         return ResponseEntity.ok().body(user);
 
 	}
-	
+	// update user
+		@PatchMapping("/users/{id}")
+		public ResponseEntity<User> updateUser(@PathVariable(value = "id") Long userId, @Valid @RequestBody User userDetail)
+				throws ResourceNotFoundException {
+			User user = userRepo.findById(userId)
+					.orElseThrow(() -> new ResourceNotFoundException("User not found for this id :: " + userId));
+			user.setPassword(userDetail.getPassword());
+			final User updatedUser = userRepo.save(user);
+			return ResponseEntity.ok(updatedUser);
+		}
 }

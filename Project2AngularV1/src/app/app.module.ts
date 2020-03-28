@@ -17,6 +17,7 @@ import { IndexComponent } from './index/index.component';
 import { Header2Component } from './header2/header2.component';
 import { ProfileComponent } from './profile/profile.component';
 import { CurrentUserDetailsComponent } from './current-user-details/current-user-details.component';
+import { PasswordResetComponent } from './password-reset/password-reset.component';
 import { RestaurantDisplayComponent } from './restaurant-display/restaurant-display.component';
 
 
@@ -34,7 +35,8 @@ import { RestaurantDisplayComponent } from './restaurant-display/restaurant-disp
     Header2Component,
     ProfileComponent,
     CurrentUserDetailsComponent,
-    RestaurantDisplayComponent,
+    PasswordResetComponent,
+    RestaurantDisplayComponent
 
     
   ],
