@@ -22,7 +22,7 @@ import com.project.repository.RestaurantRepository;
 @CrossOrigin(origins = "*")	
 @RequestMapping("/api/v1")
 public class RestaurantController {
-
+	
 	@Autowired
 	private RestaurantRepository restaurantRepo;
 	
@@ -38,10 +38,12 @@ public class RestaurantController {
 	
 	@GetMapping("/restaurants/{id}")
 	public ResponseEntity<Restaurant> getRestaurantById(@PathVariable(value="id") Long restaurantId) throws ResourceNotFoundException{
-	
 		Restaurant restaurant = restaurantRepo.findById(restaurantId) .orElseThrow(() -> new ResourceNotFoundException("Restaurant not found for this id :: " + restaurantId));
-	
 		return ResponseEntity.ok().body(restaurant);
 	}
 	
+	@GetMapping("/restaurantsAt/{location}")
+	public List<Restaurant> getRestaurantbyLocation(@PathVariable(value="location") String location){
+		return restaurantRepo.byLocation(location);
+	}
 }
