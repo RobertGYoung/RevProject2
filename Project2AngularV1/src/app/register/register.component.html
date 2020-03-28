@@ -1,0 +1,46 @@
+<app-header></app-header>
+<div class="text-center"><br/><br/>
+  <h1>Welcome to Tastease</h1>
+ 
+  <br/>
+  <br/>
+<div class="row">
+  
+  <div class="col-4"><h2 class="ml-5 text-warning">Register</h2></div>
+  <div class="col-4">
+<div [hidden]="submitted" style="width: 400px;">
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">Username</label>
+      <input type="text" class="form-control" id="username" required [(ngModel)]="user.username" name="username">
+    </div>
+
+    <div class="form-group">
+      <label for="passWord">Password</label>
+      <input type="password" class="form-control" id="password" required [(ngModel)]="user.password" name="password">
+    </div>
+
+    <div class="form-group">
+      <label for="location">Location</label>
+      <input type="text" class="form-control" id="location" required [(ngModel)]="user.location" name="location">
+    </div>
+
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+
+</div>
+<div [hidden]="!submitted">
+  <h4>You submitted successfully! Please Login</h4>
+  <!-- <button class="btn btn-success" (click)="newEmployee()">Add</button> -->
+</div>
+
+</div>
+<div class="col-4"></div>
+
+<!--<form>
+    <label>Where are you located:<input type="text"/></label><br>
+    <label>Make a username:<input type="text"/></label><br>
+    <label>Make a Password:<input type="password"/></label>
+    <label>Confirm Password:<input type="password"/></label>
+    <button type="submit">Register</button>
+  </form>-->
