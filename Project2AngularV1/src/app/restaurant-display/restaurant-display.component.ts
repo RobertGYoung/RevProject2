@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Restaurant} from '../restaurant';
 import {RestaurantService} from '../restaurant.service'
+import {Likes} from '../likes';
+import {LikesService} from '../likes.service';
 @Component({
   selector: 'app-restaurant-display',
   templateUrl: './restaurant-display.component.html',
