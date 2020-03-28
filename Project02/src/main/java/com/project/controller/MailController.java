@@ -23,7 +23,7 @@ public class MailController {
 	
 	@RequestMapping(value="send-mail", method = RequestMethod.POST)
 	public String send(@RequestParam(value="email_", required=false)  String userEmail) {
-		sendMail.setMailText("http://localhost:9090/reset");
+		sendMail.setMailText("http://localhost:9090/passwordreset");
 		user.setEmailAddress(userEmail);  //Receiver's email address
 		System.out.println(userEmail);
 		try {
