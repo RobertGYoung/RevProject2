@@ -28,7 +28,7 @@ export class RestaurantDisplayComponent implements OnInit {
       )
       
 }
-  clickNext(){
+  clickLike(){
     if(this.currentIndex < this.restaurants.length)
     this.currentIndex++;
     console.log("ckicl")
