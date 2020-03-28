@@ -25,15 +25,10 @@ public class User {
 	private String location;
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private Set<Like> likes = new HashSet<>();
-	
+
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private Set<FriendList> friends = new HashSet<>();
-	
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-	private Set<FriendList> friends = new HashSet<>();
-	
-	
-	
+
 	public Set<FriendList> getFriends() {
 		return friends;
 	}
