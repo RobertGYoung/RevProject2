@@ -9,10 +9,8 @@ import org.springframework.stereotype.Service;
 
 import com.project.exception.ResourceNotFoundException;
 import com.project.model.FriendList;
-import com.project.model.Like;
 import com.project.model.User;
 import com.project.repository.FriendListRepository;
-import com.project.repository.LikeRepository;
 import com.project.repository.UserRepository;
 @Service
 public class FriendListService {

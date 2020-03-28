@@ -55,4 +55,5 @@ public class FriendListController {
         response.put("deleted", Boolean.TRUE);
         return response;
     }
+    
 }
