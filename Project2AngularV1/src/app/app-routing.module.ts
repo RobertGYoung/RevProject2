@@ -5,7 +5,7 @@ import { RegisterComponent } from './register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {ProfileComponent} from './profile/profile.component';
 import { AddFriendComponent } from './add-friend/add-friend.component';
-
+//comment
 import {PasswordResetComponent} from './password-reset/password-reset.component';
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
