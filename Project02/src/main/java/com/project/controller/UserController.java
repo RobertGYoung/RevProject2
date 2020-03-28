@@ -2,6 +2,7 @@ package com.project.controller;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.project.model.Like;
 import com.project.model.User;
 import com.project.repository.UserRepository;
 import com.project.exception.ResourceNotFoundException;
@@ -26,8 +28,22 @@ import com.project.exception.ResourceNotFoundException;
 @RequestMapping("/api/v1")
 public class UserController {
 
+	
 	@Autowired
 	private UserRepository userRepo;
+	
+	@PostConstruct
+	public void initDatabaseValues() {
+		System.out.println("Initializing default database values");
+		if(userRepo.count()==0) {
+			//If any default like or friend objects they should also be done here.
+			User u1 = new User("Ezra", "password", "Denver");
+			User u2 = new User("Emily", "password", "Denver");
+			userRepo.save(u1);
+			userRepo.save(u2);
+			userRepo.flush();
+		}
+	}
 	
 	@GetMapping("/users")
 	public List<User> getAllUsers(){
