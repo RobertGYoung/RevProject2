@@ -30,7 +30,7 @@ export class RegisterComponent implements OnInit {
     this.submitted = true;
     this.save();    
   }
-  gotoList() {
-    this.router.navigate(['/login']);
-  }
+  // gotoList() {
+  //   this.router.navigate(['/login']);
+  // }
 }
