@@ -23,7 +23,7 @@ export class DashboardComponent implements OnInit {
         
         this.currentUser= JSON.parse(localStorage.getItem('User'));
        
-
+        //console.log(this.currentUser)
       });
       }
 

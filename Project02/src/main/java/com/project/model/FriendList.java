@@ -1,6 +1,7 @@
 package com.project.model;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,6 +20,8 @@ public class FriendList {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	private long f_id;
+	
+
 	private String f_name;
 	
 	@ManyToOne(cascade = CascadeType.PERSIST)

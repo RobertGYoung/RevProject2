@@ -2,16 +2,26 @@
 <br/>
 <br/>
 <br/>
+<div class="container text-center">
 <h1>Add a friend</h1>
-<form (ngSubmit)="findFriend($event)">
-
+<form #form='ngForm' ngNativeValidate (ngSubmit)="onSubmit()" >
     <div class="form-group">
-      <label for="friendUsername">Seach for a friend:</label>
-      <input type="text" class="form-control" id="friendUsername" name="friendUsername" required [()]="user.password" >
-    </div>
-    <div [hidden]="!authenticated">
-      <h4 class="text-danger">No user found</h4>
-    </div>
-
-    <button type="submit" class="btn btn-success">Search</button>
+<input class="form-controll" type="number" placeholder="search by id" name="user" required [(ngModel)]="user.id"><br/>
+<br/>
+</div>
+<button type="submit">Search</button>
 </form>
+<br/>
+<h3><p style="color: crimson;">{{errorMessage}}</p></h3>
+
+<div class="card text-center"  [hidden]="!submitted">
+    <div class="card-body">
+      <h5 class="card-title">Userame: {{userName}}</h5>
+      <p class="card-text">ID: {{userId}}</p>
+      <p class="card-text">Location: {{userLocation}}</p>
+      <button class="btn btn-primary" (click)="onAddFriend()">Add Friend</button>
+    </div>
+  </div>
+  <br/>
+ <h3><p style="color: crimson;">{{addFriendMessage}}</p></h3> 
+</div>
