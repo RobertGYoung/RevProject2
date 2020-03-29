@@ -43,7 +43,7 @@
 <div *ngFor="let like of currentUser.likes" >
   
    <div *ngIf="like.is_liked==true">
-    <p>likeId: {{like.id}} | r_id: {{like.r_id}} 
+    <p>likeId: {{like.id}} | r_id: {{like.r_id}}
     </div>
 </div>
 </div>
@@ -52,4 +52,4 @@
       <div class="col-4"></div>
     </div>
   </div>
-  
+  <app-clear-likes></app-clear-likes>

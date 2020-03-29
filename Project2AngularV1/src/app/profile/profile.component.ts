@@ -40,7 +40,7 @@ export class ProfileComponent implements OnInit {
              
                console.log("You and"+ friend.f_name+" have a match for Restaurant:"+data.name+" in "+data.location);
             })
-            
+
           }
         }
       }

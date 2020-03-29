@@ -19,6 +19,8 @@ import { CurrentUserDetailsComponent } from './current-user-details/current-user
 import { PasswordResetComponent } from './password-reset/password-reset.component';
 import { RestaurantDisplayComponent } from './restaurant-display/restaurant-display.component';
 import { UserService} from './user.service';
+import { ClearLikesComponent } from './clear-likes/clear-likes.component';
+
 
 
 @NgModule({
@@ -34,9 +36,10 @@ import { UserService} from './user.service';
     ProfileComponent,
     CurrentUserDetailsComponent,
     PasswordResetComponent,
-    RestaurantDisplayComponent
+    RestaurantDisplayComponent,
+    ClearLikesComponent
 
-    
+
   ],
   imports: [
     BrowserModule,
