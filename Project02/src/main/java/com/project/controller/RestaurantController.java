@@ -33,12 +33,12 @@ public class RestaurantController {
 			Restaurant r1 = new Restaurant("Rio Grande", "Denver", "https://riograndemexican.com/locations/denver/?utm_source=Yext&utm_medium=Local_Listings&utm_campaign=Denver", "https://rest-bucket.s3.amazonaws.com/rio.jpg" );
 			Restaurant r2 = new Restaurant("Illegal Petes", "Denver", "https://www.illegalpetes.com/", "https://rest-bucket.s3.amazonaws.com/Petesjpg.jpg");
 			Restaurant r3 = new Restaurant("Cho77", "Denver", "https://www.cho77.com/", "https://rest-bucket.s3.amazonaws.com/cho77.jpg");
-			Restaurant r4 = new Restaurant("Chicken Rico", "Herndon, VA", "https://menupages.com/chicken-rico/1254-elden-st-herndon", "https://rest-bucket.s3.amazonaws.com/chicken-rico.jpg");
-			Restaurant r5 = new Restaurant("Hama Sushi", "Herndon, VA", "http://www.hama-sushi.com/", "https://rest-bucket.s3.amazonaws.com/Hama-.jpg");
-			Restaurant r6 = new Restaurant("Kalpasi", "Herndon, VA", "https://www.kalpasi.com/", "https://rest-bucket.s3.amazonaws.com/kalpasi.jpg");
-			Restaurant r7 = new Restaurant("Thai tada", "Herndon, VA", "https://www.thaitada.com/", "https://rest-bucket.s3.amazonaws.com/thaitada.jpg");
-			Restaurant r8 = new Restaurant("Alo Vietnam", "Herndon, VA", "https://www.alovndulles.com/", "https://rest-bucket.s3.amazonaws.com/alov.jpg");
-			Restaurant r9 = new Restaurant("Popeyes", "Herndon, VA", "https://www.popeyes.com/store-locator/store/restaurant_82447", "https://rest-bucket.s3.amazonaws.com/popeyes.jpg");
+			Restaurant r4 = new Restaurant("Chicken Rico", "Herndon", "https://menupages.com/chicken-rico/1254-elden-st-herndon", "https://rest-bucket.s3.amazonaws.com/chicken-rico.jpg");
+			Restaurant r5 = new Restaurant("Hama Sushi", "Herndon", "http://www.hama-sushi.com/", "https://rest-bucket.s3.amazonaws.com/Hama-.jpg");
+			Restaurant r6 = new Restaurant("Kalpasi", "Herndon", "https://www.kalpasi.com/", "https://rest-bucket.s3.amazonaws.com/kalpasi.jpg");
+			Restaurant r7 = new Restaurant("Thai tada", "Herndon", "https://www.thaitada.com/", "https://rest-bucket.s3.amazonaws.com/thaitada.jpg");
+			Restaurant r8 = new Restaurant("Alo Vietnam", "Herndon", "https://www.alovndulles.com/", "https://rest-bucket.s3.amazonaws.com/alov.jpg");
+			Restaurant r9 = new Restaurant("Popeyes", "Herndon", "https://www.popeyes.com/store-locator/store/restaurant_82447", "https://rest-bucket.s3.amazonaws.com/popeyes.jpg");
 
 			
 			
