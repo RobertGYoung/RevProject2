@@ -14,10 +14,10 @@
 
 <div *ngFor="let like of currentUser.likes" >
    <div *ngIf="like.is_liked==true">
-    <p>likeId: {{like.id}} | r_id: {{like.r_id}} 
+    <p>likeId: {{like.id}} | r_id: {{like.r_id}}
     </div>
 </div>
-        
+
         </div>
       </div>
     </div>
@@ -30,10 +30,11 @@
                 <li class="list-group-item">
                     Name: {{friend.f_name}} - ID: {{friend.f_id}}
                     <button  id="{{friend.f_id}}" title="Match a restaurant that your friend also likes." (click)="onMatch($event,friend)">Match</button>
-                </li>              
+                </li>
               </ul>
               </div>
         </div>
       </div>
     </div>
   </div>
+  <app-clear-likes></app-clear-likes>
