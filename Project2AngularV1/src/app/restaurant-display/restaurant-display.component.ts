@@ -21,23 +21,19 @@ export class RestaurantDisplayComponent implements OnInit {
   likeList;
 
   ngOnInit(): void {
+    //grab session user
     this.currentUser= JSON.parse(localStorage.getItem('User'));
-    console.log("Display:"+this.currentUser.location);
-    this.restaurants= this.restaurantService.getRestaurantList().subscribe(
-      data => {  
-        this.restaurants = data;
-              this.restaurantService.saveRestaurantsToSession(this.restaurants);
-             
-           }
-      )
-      this.likeList=this.likeService.getUserLikedList(this.currentUser);
+    //add likes to like list
+    this.likeList=this.currentUser.likes;
+    //grab restaurants
+      this.restaurants= this.restaurantService.getRestaurantList().subscribe( data => this.restaurants = data)
       console.log("Init userLike list")
       console.log(this.likeList);
       
 }
 
   clickLike(){
-     
+      this.likeList=this.likeService.getUserLikedList(this.currentUser);
       this.restaurant=this.restaurants[this.currentIndex]
       console.log(this.restaurant.name)
       this.like=new Like;
@@ -46,27 +42,43 @@ export class RestaurantDisplayComponent implements OnInit {
       this.like.user_id=this.currentUser.id;
       console.log(this.like.is_liked);
       console.log(this.like.r_id);
+      this.currentUser.likes.push(this.like)
+      console.log(this.currentUser.likes.length)
+      console.log(this.likeList.length)
+
+      localStorage.setItem('User', JSON.stringify(this.currentUser));
       this.likeService.addLikeToDb(this.currentUser.id,this.like).subscribe(data => console.log(data), error => console.log(error));
       this.clickNext();
   }
   clickDislike(){
+    this.likeList=this.likeService.getUserLikedList(this.currentUser);
     this.restaurant=this.restaurants[this.currentIndex]
     console.log(this.restaurant.name)
     this.like=new Like;
     this.like.is_liked=false;
     this.like.r_id=this.restaurant.id;
     this.like.user_id=this.currentUser.id;
+          console.log(this.like.is_liked);
+      console.log(this.like.r_id);
+      this.currentUser.likes.push(this.like)
+      console.log(this.currentUser.likes.length)
+      console.log(this.likeList.length)
+
+      localStorage.setItem('User', JSON.stringify(this.currentUser));
     this.likeService.addLikeToDb(this.currentUser.id,this.like).subscribe(data => console.log(data), error => console.log(error));
     this.clickNext();
   }
  
   clickNext(){
+   
     if(this.currentIndex >= this.restaurants.length-1){
       this.currentIndex=0;
     }
-   
-   this.likeList=this.likeService.getUserLikedList(this.currentUser)
-  
+     if(this.restaurants[this.currentIndex].id==this.like.r_id){
+       console.log("should delte")
+     
+      }
+      console.log(this.restaurants[this.currentIndex].id+" and " + this.like.r_id)
     this.currentIndex++;
   }
 }
