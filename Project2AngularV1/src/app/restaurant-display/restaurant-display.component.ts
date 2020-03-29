@@ -17,70 +17,61 @@ export class RestaurantDisplayComponent implements OnInit {
   currentIndex: number = 0;
   restaurant:Restaurant;
   restaurants;
-  like:Like;
   likeList;
 
   ngOnInit(): void {
     //grab session user
     this.currentUser= JSON.parse(localStorage.getItem('User'));
     //add likes to like list
-    this.likeList=this.currentUser.likes;
     //grab restaurants
-      this.restaurants= this.restaurantService.getRestaurantList().subscribe( data => this.restaurants = data)
-      console.log("Init userLike list")
-      console.log(this.likeList);
-      
+    this.restaurants= this.restaurantService.getRestaurantListByLocation(this.currentUser.location).subscribe( data => this.restaurants = data)
+    console.log("Init userLike list")
+    console.log(this.currentUser.likes);
+
 }
 
   clickLike(){
-      this.likeList=this.likeService.getUserLikedList(this.currentUser);
-      this.restaurant=this.restaurants[this.currentIndex]
-      console.log(this.restaurant.name)
-      this.like=new Like;
-      this.like.is_liked=true;
-      this.like.r_id=this.restaurant.id;
-      this.like.user_id=this.currentUser.id;
-      console.log(this.like.is_liked);
-      console.log(this.like.r_id);
-      this.currentUser.likes.push(this.like)
-      console.log(this.currentUser.likes.length)
-      console.log(this.likeList.length)
-
-      localStorage.setItem('User', JSON.stringify(this.currentUser));
-      this.likeService.addLikeToDb(this.currentUser.id,this.like).subscribe(data => console.log(data), error => console.log(error));
-      this.clickNext();
+      this.restaurant=this.restaurants[this.currentIndex];
+      console.log(this.restaurant.name);
+      let like=new Like();
+      like.is_liked=true;
+      like.r_id=this.restaurant.id;
+      like.user_id = this.currentUser.id
+      console.log("User liked " + like.r_id);
+      this.postRateProcess(like);
   }
-  clickDislike(){
-    this.likeList=this.likeService.getUserLikedList(this.currentUser);
-    this.restaurant=this.restaurants[this.currentIndex]
-    console.log(this.restaurant.name)
-    this.like=new Like;
-    this.like.is_liked=false;
-    this.like.r_id=this.restaurant.id;
-    this.like.user_id=this.currentUser.id;
-          console.log(this.like.is_liked);
-      console.log(this.like.r_id);
-      this.currentUser.likes.push(this.like)
-      console.log(this.currentUser.likes.length)
-      console.log(this.likeList.length)
 
-      localStorage.setItem('User', JSON.stringify(this.currentUser));
-    this.likeService.addLikeToDb(this.currentUser.id,this.like).subscribe(data => console.log(data), error => console.log(error));
+  clickDislike(){
+      this.restaurant=this.restaurants[this.currentIndex];
+      let like=new Like();
+      like.is_liked=false;
+      like.r_id=this.restaurant.id;
+      like.user_id = this.currentUser.id
+      console.log(this.restaurant.name);
+      console.log("User disliked " + like.r_id);
+      this.postRateProcess(like);
+  }
+
+  postRateProcess(like:Like){
+    this.currentUser.likes.push(like)
+    console.log("Resteraunts rated: " + this.currentUser.likes.length)
+    localStorage.setItem('User', JSON.stringify(this.currentUser));
+    this.likeService.addLikeToDb(this.currentUser.id, like).subscribe(data => console.log(data), error => console.log(error));
     this.clickNext();
   }
- 
+
   clickNext(){
-   
-    if(this.currentIndex >= this.restaurants.length-1){
-      this.currentIndex=0;
-    }
-    //change this 
-     if(this.restaurants[this.currentIndex].id==this.like.r_id){
-       console.log("should delte")
-     
+    if(this.restaurants.length==0){
+      console.log("No new resteraunts.");
+    } else {
+      let temp:Restaurant = this.restaurants.pop();
+      let like;
+      for(like in this.currentUser.likes){
+        if(like.r_id == temp.id){
+          this.clickNext();
+        }
       }
-      console.log(this.restaurants[this.currentIndex].id+" and " + this.like.r_id) 
-      // change the like.rid to check if present in the currentUser.like
-    this.currentIndex++;
+      this.restaurant = temp;
+    }
   }
 }

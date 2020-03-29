@@ -15,7 +15,7 @@ export class RestaurantService {
     return this.http.get(`${this.baseUrl}/${id}`);
   }
 
-  getRestaurantListByLocation(String: location): Observable<any> {
+  getRestaurantListByLocation(location:String): Observable<any> {
     return this.http.get(`${this.baseUrl}/${location}`);
   }
 
