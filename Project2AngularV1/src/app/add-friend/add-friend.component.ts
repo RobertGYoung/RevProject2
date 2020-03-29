@@ -12,9 +12,9 @@ export class AddFriendComponent implements OnInit {
 
   user:User = new User();
   friend:Friend = new Friend();
-  userName;
-  userLocation;
-  userId;
+  friendName;
+  friendLocation;
+  friendId;
   errorMessage: string;
   submitted = false;
   currentUser;
@@ -26,9 +26,11 @@ export class AddFriendComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentUser= JSON.parse(localStorage.getItem('User'));
+
     this.friendService.getFriendList().subscribe(data=>{
       this.friendList = data;
-      
+      console.log(this.friendList)
+      this.currentUser.friends=this.friendList
     })
 
     
@@ -36,13 +38,16 @@ export class AddFriendComponent implements OnInit {
 
   onSubmit(){
       this.userService.getUser(this.user.id).subscribe(data=>{
-       this.userName = data.username;
-       this.userId= data.id;
-       this.userLocation=data.location;
-       this.friend.f_id=this.currentUser.id;
-       this.friend.f_name=data.username;
+       this.friendName = data.username;
+       this.friendId= data.id;
+       this.friendLocation=data.location;
+       this.friend.f_id=this.friendId;
+       this.friend.f_name=this.friendName;
        this.errorMessage="";
        this.submitted = true;
+       //local storage
+     
+
      },error =>{
        this.submitted=false;
        this.addFriendMessage="";
@@ -56,12 +61,12 @@ export class AddFriendComponent implements OnInit {
 
   onAddFriend(){  
     this.isFriendAdded=false;
-    console.log(this.userId);
-    if(this.friendList.length <1){
-        this.addFriend();
-    }
+    console.log(this.friendId);
+    // if(this.friendList.length <1){
+    //     this.addFriend();
+    // }
     for(let friend of this.friendList){
-      if(friend.f_name ==this.userName && friend.f_id==this.currentUser.id){
+      if(friend.f_name ==this.friendName && friend.f_id==this.friendId){
       this.addFriendMessage=`This user is already in your friendlist.`;
       this.isFriendAdded=true;
       }
@@ -74,10 +79,13 @@ export class AddFriendComponent implements OnInit {
 
   addFriend(){
     this.friendService.createFriend(this.currentUser.id, this.friend ).subscribe(data=>{
-      this.addFriendMessage=`${this.userName} has been added to your friendlist.`;   
+      this.addFriendMessage=`${this.friendName} has been added to your friendlist.`;   
     }, error=>{
       this.addFriendMessage="An error occurred, user did not added."
     })
+    // this.friendList.push(this.friend)
+    this.currentUser.friends.push(this.friend);
+    localStorage.setItem('User', JSON.stringify(this.currentUser))
   }
 
 }
