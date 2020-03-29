@@ -28,7 +28,7 @@ export class ProfileComponent implements OnInit {
          // console.log(userLike)
           if(friendLike.r_id == userLike.r_id){
             this.restaurantService.getRestaurant(friendLike.r_id).subscribe(data=>{
-              alert(`We have a match for Restaurant: ${data.name} in ${data.location}`);
+              alert(`You and ${friend.f_name} have a match for Restaurant: ${data.name} in ${data.location}`);
             })
             
           }
