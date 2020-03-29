@@ -18,5 +18,10 @@ export class ProfileComponent implements OnInit {
     this.friends=this.currentUser.friends;
   }
  
+  onMatch(event, friend){
+    console.log(friend.f_id)
+    console.log(this.currentUser.id)
+
+  }
 
 }

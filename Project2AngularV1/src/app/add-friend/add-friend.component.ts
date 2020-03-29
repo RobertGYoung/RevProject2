@@ -41,8 +41,9 @@ export class AddFriendComponent implements OnInit {
        this.friendName = data.username;
        this.friendId= data.id;
        this.friendLocation=data.location;
-       this.friend.f_id=this.friendId;
-       this.friend.f_name=this.friendName;
+       this.friend.f_id=this.user.id;
+       this.friend.f_name=data.username;
+       this.friend.c_id=this.currentUser.id;
        this.errorMessage="";
        this.submitted = true;
        //local storage
@@ -61,12 +62,11 @@ export class AddFriendComponent implements OnInit {
 
   onAddFriend(){  
     this.isFriendAdded=false;
-    console.log(this.friendId);
     // if(this.friendList.length <1){
     //     this.addFriend();
     // }
     for(let friend of this.friendList){
-      if(friend.f_name ==this.friendName && friend.f_id==this.friendId){
+      if(friend.f_name ==this.friend.f_name && friend.c_id==this.currentUser.id){
       this.addFriendMessage=`This user is already in your friendlist.`;
       this.isFriendAdded=true;
       }
@@ -79,7 +79,8 @@ export class AddFriendComponent implements OnInit {
 
   addFriend(){
     this.friendService.createFriend(this.currentUser.id, this.friend ).subscribe(data=>{
-      this.addFriendMessage=`${this.friendName} has been added to your friendlist.`;   
+      this.addFriendMessage=`${this.friendName} has been added to your friendlist.`; 
+
     }, error=>{
       this.addFriendMessage="An error occurred, user did not added."
     })
