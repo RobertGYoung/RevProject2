@@ -13,7 +13,6 @@ import { RegisterComponent } from './register/register.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { IndexComponent } from './index/index.component';
 import { Header2Component } from './header2/header2.component';
 import { ProfileComponent } from './profile/profile.component';
 import { CurrentUserDetailsComponent } from './current-user-details/current-user-details.component';
@@ -31,7 +30,6 @@ import { RestaurantDisplayComponent } from './restaurant-display/restaurant-disp
     RegisterComponent,
     HeaderComponent,
     FooterComponent,
-    IndexComponent,
     Header2Component,
     ProfileComponent,
     CurrentUserDetailsComponent,
