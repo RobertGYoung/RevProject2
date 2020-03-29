@@ -20,7 +20,15 @@ public class FriendList {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	private long f_id;
-	
+	private long c_id;
+
+	public long getC_id() {
+		return c_id;
+	}
+
+	public void setC_id(long c_id) {
+		this.c_id = c_id;
+	}
 
 	private String f_name;
 	
