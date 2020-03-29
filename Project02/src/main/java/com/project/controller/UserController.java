@@ -47,8 +47,12 @@ public class UserController {
 			//If any default like or friend objects they should also be done here.
 			User u1 = new User("Ezra", "password", "Denver");
 			User u2 = new User("Emily", "password", "Denver");
+			User u3 = new User("Admin", "pass", "Herndon");
+			User u4 = new User("Friend", "pass", "Herndon");
 			userRepo.save(u1);
 			userRepo.save(u2);
+			userRepo.save(u3);
+			userRepo.save(u4);
 			userRepo.flush();
 		}
 	}
