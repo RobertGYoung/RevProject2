@@ -6,5 +6,11 @@
 <h3>Username: {{currentUser.username}}</h3>
 <h3>Location: {{currentUser.location}}</h3>
 <h3>User Id: {{currentUser.id}}</h3>
+<h3>Likes:</h3>
 
+<div *ngFor="let like of currentUser.likes" >
+   <div *ngIf="like.is_liked==true">
+    <p>likeId: {{like.id}} | r_id: {{like.r_id}} 
+    </div>
+</div>
 <h1>Friends:</h1>
