@@ -16,59 +16,72 @@ export class RestaurantDisplayComponent implements OnInit {
   currentUser:User;
   currentIndex: number = 0;
   restaurant:Restaurant;
+  hasNext:boolean = true;
   restaurants;
-  likeList;
 
   ngOnInit(): void {
     //grab session user
-    this.currentUser= JSON.parse(localStorage.getItem('User'));
+    this.currentUser = JSON.parse(localStorage.getItem('User'));
     //add likes to like list
     //grab restaurants
-    this.restaurants= this.restaurantService.getRestaurantListByLocation(this.currentUser.location).subscribe( data => this.restaurants = data)
-    console.log("Init userLike list")
+    this.restaurantService.getRestaurantListByLocation(this.currentUser.location).subscribe( data =>
+      {this.restaurants = data
+        console.log("test")
+        console.log(this.restaurants);
+        this.restaurant=this.restaurants[this.restaurants.length -1];
+        // localstorage.setItem('Restaurants',JSON.stringify(this.restaurants));
+        this.nextRestaurant();
+      }
+    );
+    // this.restaurants=JSON.parse(localStorage.getItem('Restaurants'));
+    console.log("Init userLike list");
     console.log(this.currentUser.likes);
-
-}
+  }
 
   clickLike(){
-      this.restaurant=this.restaurants[this.currentIndex];
+    console.log("test2")
+    console.log(this.restaurants);
       console.log(this.restaurant.name);
       let like=new Like();
       like.is_liked=true;
-      like.r_id=this.restaurant.id;
-      like.user_id = this.currentUser.id
+      let rid = this.restaurant.id;
+      like.r_id=rid;
+      like.user_id = this.currentUser.id;
       console.log("User liked " + like.r_id);
       this.postRateProcess(like);
   }
 
   clickDislike(){
-      this.restaurant=this.restaurants[this.currentIndex];
+      console.log(this.restaurant.name);
       let like=new Like();
       like.is_liked=false;
-      like.r_id=this.restaurant.id;
-      like.user_id = this.currentUser.id
+      let rid = this.restaurant.id;
+      like.r_id=rid;
+      like.user_id = this.currentUser.id;
       console.log(this.restaurant.name);
       console.log("User disliked " + like.r_id);
       this.postRateProcess(like);
   }
 
   postRateProcess(like:Like){
-    this.currentUser.likes.push(like)
-    console.log("Resteraunts rated: " + this.currentUser.likes.length)
+    this.nextRestaurant();
+    this.currentUser.likes.push(like);
+    console.log("Resteraunts rated: " + this.currentUser.likes.length);
     localStorage.setItem('User', JSON.stringify(this.currentUser));
     this.likeService.addLikeToDb(this.currentUser.id, like).subscribe(data => console.log(data), error => console.log(error));
-    this.clickNext();
   }
 
-  clickNext(){
+  nextRestaurant(){
     if(this.restaurants.length==0){
-      console.log("No new resteraunts.");
+      this.hasNext=false;
     } else {
       let temp:Restaurant = this.restaurants.pop();
-      let like;
-      for(like in this.currentUser.likes){
-        if(like.r_id == temp.id){
-          this.clickNext();
+      let l;
+      for(l of this.currentUser.likes){
+        console.log("In loop");
+        console.log(l);
+        if(l.r_id == temp.id){
+          this.nextRestaurant();
         }
       }
       this.restaurant = temp;
