@@ -31,7 +31,7 @@ export class RestaurantDisplayComponent implements OnInit {
       {this.restaurants = data
         console.log("test")
         console.log(this.restaurants);
-        this.restaurant=this.restaurants[this.restaurants.length -1];
+       // this.restaurant=this.restaurants[this.restaurants.length -1];
         // localstorage.setItem('Restaurants',JSON.stringify(this.restaurants));
         this.nextRestaurant();
       }
