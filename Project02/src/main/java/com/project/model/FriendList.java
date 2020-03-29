@@ -79,5 +79,4 @@ public class FriendList {
 		return "FriendList [id=" + id + ", f_id=" + f_id + ", f_name=" + f_name + ", user=" + user + "]";
 	}
 	
-	
 }

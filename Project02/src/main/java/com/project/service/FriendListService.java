@@ -22,6 +22,7 @@ public class FriendListService {
 	private UserRepository userRepo;
 	
 	public FriendList createFriend(long userId, FriendList friend) throws ResourceNotFoundException {
+		
 		Set<FriendList> friends = new HashSet<>();
 		Optional<User> userById = userRepo.findById(userId);
 		 if (!userById.isPresent()) {
