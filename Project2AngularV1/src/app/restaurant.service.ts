@@ -9,10 +9,14 @@ export class RestaurantService {
 
   private baseUrl = 'http://localhost:9090/api/v1/restaurants';
   currentRestaurants:Restaurant[];
-  
+
   constructor(private http: HttpClient) { }
   getRestaurant(id: number): Observable<any> {
     return this.http.get(`${this.baseUrl}/${id}`);
+  }
+
+  getRestaurantListByLocation(String: location): Observable<any> {
+    return this.http.get(`${this.baseUrl}/${location}`);
   }
 
   getRestaurantList(): Observable<any> {
