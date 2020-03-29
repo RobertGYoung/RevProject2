@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import org.springframework.web.bind.annotation.PostMapping;
@@ -39,8 +40,12 @@ public class UserController {
 			//If any default like or friend objects they should also be done here.
 			User u1 = new User("Ezra", "password", "Denver");
 			User u2 = new User("Emily", "password", "Denver");
+			User u3 = new User("Admin", "pass", "Herndon");
+			User u4 = new User("Friend", "pass", "Herndon");
 			userRepo.save(u1);
 			userRepo.save(u2);
+			userRepo.save(u3);
+			userRepo.save(u4);
 			userRepo.flush();
 		}
 	}
@@ -64,5 +69,14 @@ public class UserController {
         return ResponseEntity.ok().body(user);
 
 	}
-	
+	// update user
+		@PatchMapping("/users/{id}")
+		public ResponseEntity<User> updateUser(@PathVariable(value = "id") Long userId, @Valid @RequestBody User userDetail)
+				throws ResourceNotFoundException {
+			User user = userRepo.findById(userId)
+					.orElseThrow(() -> new ResourceNotFoundException("User not found for this id :: " + userId));
+			user.setPassword(userDetail.getPassword());
+			final User updatedUser = userRepo.save(user);
+			return ResponseEntity.ok(updatedUser);
+		}
 }

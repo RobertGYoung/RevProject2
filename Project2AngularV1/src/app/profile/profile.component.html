@@ -2,9 +2,38 @@
 <br/>
 <br/>
 <br/>
-<h1>Profile</h1>
-<h3>Username: {{currentUser.username}}</h3>
+ <div class="row">
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <h1 class="card-title">Profile</h1>
+          <h3>Username: {{currentUser.username}}</h3>
 <h3>Location: {{currentUser.location}}</h3>
 <h3>User Id: {{currentUser.id}}</h3>
+<h3>Likes:</h3>
 
-<h1>Friends:</h1>
+<div *ngFor="let like of currentUser.likes" >
+   <div *ngIf="like.is_liked==true">
+    <p>likeId: {{like.id}} | r_id: {{like.r_id}} 
+    </div>
+</div>
+        
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body text-center">
+          <h5 class="card-title">Friends</h5>
+          <div *ngFor="let friend of friends"  >
+            <ul class="list-group text-center">
+                <li class="list-group-item">
+                    Name: {{friend.f_name}} - ID: {{friend.f_id}}
+                    <button  id="{{friend.f_id}}" title="Match a restaurant that your friend also likes." (click)="onMatch($event,friend)">Match</button>
+                </li>              
+              </ul>
+              </div>
+        </div>
+      </div>
+    </div>
+  </div>

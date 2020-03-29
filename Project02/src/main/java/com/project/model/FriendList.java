@@ -1,6 +1,7 @@
 package com.project.model;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,6 +20,16 @@ public class FriendList {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	private long f_id;
+	private long c_id;
+
+	public long getC_id() {
+		return c_id;
+	}
+
+	public void setC_id(long c_id) {
+		this.c_id = c_id;
+	}
+
 	private String f_name;
 	
 	@ManyToOne(cascade = CascadeType.PERSIST)
@@ -67,6 +78,5 @@ public class FriendList {
 	public String toString() {
 		return "FriendList [id=" + id + ", f_id=" + f_id + ", f_name=" + f_name + ", user=" + user + "]";
 	}
-	
 	
 }

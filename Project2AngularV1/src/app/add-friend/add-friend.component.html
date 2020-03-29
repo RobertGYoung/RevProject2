@@ -2,4 +2,26 @@
 <br/>
 <br/>
 <br/>
+<div class="container text-center">
 <h1>Add a friend</h1>
+<form #form='ngForm' ngNativeValidate (ngSubmit)="onSubmit()" >
+    <div class="form-group">
+<input class="form-controll" type="number" placeholder="search by id" name="user" required [(ngModel)]="user.id"><br/>
+<br/>
+</div>
+<button type="submit">Search</button>
+</form>
+<br/>
+<h3><p style="color: crimson;">{{errorMessage}}</p></h3>
+
+<div class="card text-center"  [hidden]="!submitted">
+    <div class="card-body">
+      <h5 class="card-title">Userame: {{friendName}}</h5>
+      <p class="card-text">ID: {{friendId}}</p>
+      <p class="card-text">Location: {{friendLocation}}</p>
+      <button class="btn btn-primary" (click)="onAddFriend()">Add Friend</button>
+    </div>
+  </div>
+  <br/>
+ <h3><p style="color: crimson;">{{addFriendMessage}}</p></h3> 
+</div>

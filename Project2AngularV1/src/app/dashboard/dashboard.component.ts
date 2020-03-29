@@ -22,12 +22,11 @@ export class DashboardComponent implements OnInit {
 
         
         this.currentUser= JSON.parse(localStorage.getItem('User'));
-       
-
+        localStorage.setItem('Friends', JSON.stringify(this.currentUser.friends));
+        
+        //console.log(this.currentUser)
       });
       }
-
-      
     }
   
   
