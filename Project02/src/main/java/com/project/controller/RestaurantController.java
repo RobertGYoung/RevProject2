@@ -30,16 +30,31 @@ public class RestaurantController {
 	@PostConstruct
 	public void initDatabaseValues() {
 		if(restaurantRepo.count()==0) {
-			Restaurant r1 = new Restaurant("Rio Grande", "Denver", "pass", "pass" );
-			Restaurant r2 = new Restaurant("Illegal Petes", "Denver", "pass", "pass");
-			Restaurant r3 = new Restaurant("Cho77", "Denver", "pass", "pass");
+			Restaurant r1 = new Restaurant("Rio Grande", "Denver", "https://riograndemexican.com/locations/denver/?utm_source=Yext&utm_medium=Local_Listings&utm_campaign=Denver", "https://rest-bucket.s3.amazonaws.com/rio.jpg" );
+			Restaurant r2 = new Restaurant("Illegal Petes", "Denver", "https://www.illegalpetes.com/", "https://rest-bucket.s3.amazonaws.com/Petesjpg.jpg");
+			Restaurant r3 = new Restaurant("Cho77", "Denver", "https://www.cho77.com/", "https://rest-bucket.s3.amazonaws.com/cho77.jpg");
+			Restaurant r4 = new Restaurant("Chicken Rico", "Herndon, VA", "https://menupages.com/chicken-rico/1254-elden-st-herndon", "https://rest-bucket.s3.amazonaws.com/chicken-rico.jpg");
+			Restaurant r5 = new Restaurant("Hama Sushi", "Herndon, VA", "http://www.hama-sushi.com/", "https://rest-bucket.s3.amazonaws.com/Hama-.jpg");
+			Restaurant r6 = new Restaurant("Kalpasi", "Herndon, VA", "https://www.kalpasi.com/", "https://rest-bucket.s3.amazonaws.com/kalpasi.jpg");
+			Restaurant r7 = new Restaurant("Thai tada", "Herndon, VA", "https://www.thaitada.com/", "https://rest-bucket.s3.amazonaws.com/thaitada.jpg");
+			Restaurant r8 = new Restaurant("Alo Vietnam", "Herndon, VA", "https://www.alovndulles.com/", "https://rest-bucket.s3.amazonaws.com/alov.jpg");
+			Restaurant r9 = new Restaurant("Popeyes", "Herndon, VA", "https://www.popeyes.com/store-locator/store/restaurant_82447", "https://rest-bucket.s3.amazonaws.com/popeyes.jpg");
+
+			
+			
 			restaurantRepo.save(r1);
 			restaurantRepo.save(r2);
 			restaurantRepo.save(r3);
+			restaurantRepo.save(r4);
+			restaurantRepo.save(r5);
+			restaurantRepo.save(r6);
+			restaurantRepo.save(r7);
+			restaurantRepo.save(r8);
+			restaurantRepo.save(r9);
 			restaurantRepo.flush();
 		}
 	}
-	
+
 	@GetMapping("/restaurants")
 	public List<Restaurant> getAllrestaurants() {
 		return restaurantRepo.findAll();
