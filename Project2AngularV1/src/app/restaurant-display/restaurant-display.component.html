@@ -2,22 +2,27 @@
     <div class="col-sm-4"></div>
     <div class="col-sm-4">
         <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src={{restaurants[currentIndex].image_url}} alt="Card image cap">
+          <div [hidden]="hasNext">
+            <h4 class="text-warning center">No unranked restaurants</h4>
+          </div>
+
+          <div [hidden]="!hasNext">
+            <img class="card-img-top" src={{restaurant.image_url}} alt="Card image cap">
             <div class="card-body">
-              <h5 class="card-title">{{restaurants[currentIndex].name}}</h5>
+              <h5 class="card-title">{{restaurant.name}}</h5>
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
             </div>
             <ul class="list-group list-group-flush">
-              <li class="list-group-item">Website: <a href="{{restaurants[currentIndex].web_url}}" target="_blank">{{restaurants[currentIndex].web_url}}</a></li>
-              <li class="list-group-item">Location: {{restaurants[currentIndex].location}}</li>
-              <li class="list-group-item">Id: {{restaurants[currentIndex].id}}</li>
+              <li class="list-group-item">Website: <a href="{{restaurant.web_url}}" target="_blank">{{restaurant.web_url}}</a></li>
+              <li class="list-group-item">Location: {{restaurant.location}}</li>
+              <li class="list-group-item">Id: {{restaurant.id}}</li>
             </ul>
             <div class="card-body ml-5">
                 <button class="btn btn-danger mr-5" (click)="clickDislike()">X</button>
                 <button class="btn btn-success ml-4"(click)="clickLike()">✓</button>
             </div>
           </div>
-        
+          </div>
 
     </div>
     <div class="col-sm-4"></div>
