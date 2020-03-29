@@ -7,6 +7,7 @@ import {ProfileComponent} from './profile/profile.component';
 import { AddFriendComponent } from './add-friend/add-friend.component';
 //comment
 import {PasswordResetComponent} from './password-reset/password-reset.component';
+import {RestaurantDisplayComponent} from './restaurant-display/restaurant-display.component';
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   
@@ -17,8 +18,8 @@ const routes: Routes = [
    {path: 'profile',component: ProfileComponent},
    {path: 'addFriend/:id', component : AddFriendComponent},
    {path: 'addFriend', component : AddFriendComponent},
-   {path: 'passwordreset', component: PasswordResetComponent }
-  
+   {path: 'passwordreset', component: PasswordResetComponent },
+   {path: 'display', component: RestaurantDisplayComponent }
 ];
 
 @NgModule({

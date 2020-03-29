@@ -5,6 +5,7 @@ import {Like} from '../like';
 import {LikesService} from '../likes.service';
 import {UserService} from '../user.service';
 import { User } from '../user';
+import { FriendService } from '../friend.service';
 @Component({
   selector: 'app-restaurant-display',
   templateUrl: './restaurant-display.component.html',
@@ -12,16 +13,17 @@ import { User } from '../user';
 })
 export class RestaurantDisplayComponent implements OnInit {
 
-  constructor(private restaurantService:RestaurantService,private userService:UserService, private likeService: LikesService) { }
+  constructor(private restaurantService:RestaurantService,private userService:UserService,private friendService:FriendService, private likeService: LikesService) { }
   currentUser:User;
   currentIndex: number = 0;
   restaurant:Restaurant;
   hasNext:boolean = true;
   restaurants;
-
+  friend;
   ngOnInit(): void {
     //grab session user
     this.currentUser = JSON.parse(localStorage.getItem('User'));
+    this.friend=JSON.parse(localStorage.getItem('MatchingFriend'))
     //add likes to like list
     //grab restaurants
     this.restaurantService.getRestaurantListByLocation(this.currentUser.location).subscribe( data =>
@@ -85,6 +87,7 @@ export class RestaurantDisplayComponent implements OnInit {
         }
       }
       this.restaurant = temp;
+      this.friendService.onMatch(event, this.friend, this.currentUser )
     }
   }
 }

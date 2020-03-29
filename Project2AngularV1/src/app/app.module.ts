@@ -18,7 +18,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { CurrentUserDetailsComponent } from './current-user-details/current-user-details.component';
 import { PasswordResetComponent } from './password-reset/password-reset.component';
 import { RestaurantDisplayComponent } from './restaurant-display/restaurant-display.component';
-
+import { UserService} from './user.service';
 
 
 @NgModule({
@@ -44,7 +44,7 @@ import { RestaurantDisplayComponent } from './restaurant-display/restaurant-disp
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
