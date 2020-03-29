@@ -74,11 +74,13 @@ export class RestaurantDisplayComponent implements OnInit {
     if(this.currentIndex >= this.restaurants.length-1){
       this.currentIndex=0;
     }
+    //change this 
      if(this.restaurants[this.currentIndex].id==this.like.r_id){
        console.log("should delte")
      
       }
-      console.log(this.restaurants[this.currentIndex].id+" and " + this.like.r_id)
+      console.log(this.restaurants[this.currentIndex].id+" and " + this.like.r_id) 
+      // change the like.rid to check if present in the currentUser.like
     this.currentIndex++;
   }
 }
