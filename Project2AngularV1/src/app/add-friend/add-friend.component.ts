@@ -21,16 +21,22 @@ export class AddFriendComponent implements OnInit {
   addFriendMessage: string="";
 
   isFriendAdded=false;
-  friendList;
+  allFriendList;
   constructor(private userService: UserService, private friendService: FriendService) { }
 
   ngOnInit(): void {
     this.currentUser= JSON.parse(localStorage.getItem('User'));
 
     this.friendService.getFriendList().subscribe(data=>{
-      this.friendList = data;
-      console.log(this.friendList)
-      this.currentUser.friends=this.friendList
+      this.allFriendList = data;
+      //console.log(this.friendList)
+      // for(let allFriend of this.allFriendList){
+      //   for(let friend of this.currentUser.friends)
+      //   if(allFriend.f_id==this.currentUser.id){
+      //      this.currentUser.friends.push(friend)
+      //   }
+      // }
+    
     })
 
     
@@ -65,8 +71,8 @@ export class AddFriendComponent implements OnInit {
     // if(this.friendList.length <1){
     //     this.addFriend();
     // }
-    for(let friend of this.friendList){
-      if(friend.f_name ==this.friend.f_name && friend.c_id==this.currentUser.id){
+    for(let friend of this.currentUser.friends){
+      if(friend.f_name ==this.friend.f_name && friend.c_id==this.currentUser.id ){
       this.addFriendMessage=`This user is already in your friendlist.`;
       this.isFriendAdded=true;
       }
@@ -80,13 +86,14 @@ export class AddFriendComponent implements OnInit {
   addFriend(){
     this.friendService.createFriend(this.currentUser.id, this.friend ).subscribe(data=>{
       this.addFriendMessage=`${this.friendName} has been added to your friendlist.`; 
-
+      this.currentUser.friends.push(this.friend);
+    localStorage.setItem('User', JSON.stringify(this.currentUser))
+    console.log((JSON.parse(localStorage.getItem('User'))).friends)
     }, error=>{
       this.addFriendMessage="An error occurred, user did not added."
     })
     // this.friendList.push(this.friend)
-    this.currentUser.friends.push(this.friend);
-    localStorage.setItem('User', JSON.stringify(this.currentUser))
+    
   }
 
 }

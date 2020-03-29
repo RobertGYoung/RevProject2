@@ -2,38 +2,54 @@
 <br/>
 <br/>
 <br/>
+<div class="conatiner-sm mx-5 ">
+<div class="row ">
+  <div class="col-4"></div>
+  <div class="col-4 border border-dark rounded-lg pb-3">
+    <h2 class="text-dark">Choose a friend and decide where to eat!</h2>
+  <div class="card bg-dark">
+    <div class="card-body text-center">
+      <h5 class="card-title text-light">Friends - Click compare with a friend</h5>
+      <div *ngIf="friends.length==0">
+        <p class="text-warning">Looks like you do not have any friends<span><a routerLink="/addFriend"><button class="btn btn-success btn-sm ml-2">Add Friend</button></a></span></p>
+        </div>
+      <div *ngFor="let friend of friends"  >
+        <ul class="list-group text-center">
+            <li class="list-group-item text-dark">
+                Name: {{friend.f_name}} - ID: {{friend.f_id}}
+                <a routerLink="/display"><button class="btn btn-success ml-3" id="{{friend.f_id}}" title="Match a restaurant that your friend also likes." (click)="onMatch($event,friend)">Play with {{friend.f_name}}!</button></a>
+            </li>              
+          </ul>
+          </div>
+    </div>
+  </div>
+</div>
+  <div class="col-4"></div>
+</div>
  <div class="row">
-    <div class="col-sm-6">
+  <div class="col-4"></div>
+  <div class="col-4">
       <div class="card">
         <div class="card-body">
-          <h1 class="card-title">Profile</h1>
+          <h1 class="card-title">Your Profile</h1>
           <h3>Username: {{currentUser.username}}</h3>
 <h3>Location: {{currentUser.location}}</h3>
-<h3>User Id: {{currentUser.id}}</h3>
+<h3>User Id: {{currentUser.id}}<br/><span class="text-primary" style="font-size:15px;">Give a friend your User Id to start matching!</span></h3>
+<hr>
 <h3>Likes:</h3>
-
+<div *ngIf="currentUser.likes.length==0">
+  <p>You have not liked any restaurants</p>
+  </div>
 <div *ngFor="let like of currentUser.likes" >
+  
    <div *ngIf="like.is_liked==true">
     <p>likeId: {{like.id}} | r_id: {{like.r_id}} 
     </div>
 </div>
-        
+</div>
         </div>
       </div>
-    </div>
-    <div class="col-sm-6">
-      <div class="card">
-        <div class="card-body text-center">
-          <h5 class="card-title">Friends - Click compare with a friend</h5>
-          <div *ngFor="let friend of friends"  >
-            <ul class="list-group text-center">
-                <li class="list-group-item">
-                    Name: {{friend.f_name}} - ID: {{friend.f_id}}
-                    <button  id="{{friend.f_id}}" title="Match a restaurant that your friend also likes." (click)="onMatch($event,friend)">Match</button>
-                </li>              
-              </ul>
-              </div>
-        </div>
-      </div>
+      <div class="col-4"></div>
     </div>
   </div>
+  

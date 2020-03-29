@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.userList= this.userService.getUserList().subscribe();
-
+    localStorage.clear();
   }
 
   loginUser(event){

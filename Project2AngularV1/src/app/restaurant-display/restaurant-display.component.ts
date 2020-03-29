@@ -5,6 +5,7 @@ import {Like} from '../like';
 import {LikesService} from '../likes.service';
 import {UserService} from '../user.service';
 import { User } from '../user';
+import {Friend } from '../friend';
 import { FriendService } from '../friend.service';
 @Component({
   selector: 'app-restaurant-display',
@@ -17,13 +18,13 @@ export class RestaurantDisplayComponent implements OnInit {
   currentUser:User;
   currentIndex: number = 0;
   restaurant:Restaurant;
-  hasNext:boolean = true;
+  hasNext:boolean
   restaurants;
-  friend;
+  friend:Friend;
   ngOnInit(): void {
     //grab session user
     this.currentUser = JSON.parse(localStorage.getItem('User'));
-    this.friend=JSON.parse(localStorage.getItem('MatchingFriend'))
+    
     //add likes to like list
     //grab restaurants
     this.restaurantService.getRestaurantListByLocation(this.currentUser.location).subscribe( data =>
@@ -49,6 +50,7 @@ export class RestaurantDisplayComponent implements OnInit {
       let rid = this.restaurant.id;
       like.r_id=rid;
       like.user_id = this.currentUser.id;
+      this.friendService.onMatch(this.friend, like.r_id,this.restaurant.id)
       console.log("User liked " + like.r_id);
       this.postRateProcess(like);
   }
@@ -62,6 +64,7 @@ export class RestaurantDisplayComponent implements OnInit {
       like.user_id = this.currentUser.id;
       console.log(this.restaurant.name);
       console.log("User disliked " + like.r_id);
+      
       this.postRateProcess(like);
   }
 
@@ -84,10 +87,13 @@ export class RestaurantDisplayComponent implements OnInit {
         console.log(l);
         if(l.r_id == temp.id){
           this.nextRestaurant();
+          return;
         }
       }
       this.restaurant = temp;
-      this.friendService.onMatch(event, this.friend, this.currentUser )
+      this.friend = JSON.parse(localStorage.getItem('MatchingFriend'));
+      console.log("display:")
+      console.log(this.friend);
     }
   }
 }

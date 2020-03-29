@@ -23,11 +23,35 @@ export class ProfileComponent implements OnInit {
     this.friends=this.currentUser.friends;
   }
  onMatch(event,friend){
-    this.friendService.onMatch(event, friend, this.currentUser )
-    JSON.stringify(localStorage.setItem('MatchingFriend',friend));
-    this.goToRestaurantDisplay(friend)
-  }
- 
+   localStorage.clear()
+    console.log("profile:")
+    console.log(friend);
+    localStorage.setItem('MatchingFriend', JSON.stringify(friend));
+    this.isMatch=false;
+    this.userService.getUser(friend.f_id).subscribe(data=>{
+      
+      for(let friendLike of data.likes){
+        //console.log(friendLike)
+        for(let userLike of this.currentUser.likes){
+         // console.log(userLike)
+          if(friendLike.r_id == userLike.r_id){
+            this.isMatch=true;
+            this.restaurantService.getRestaurant(friendLike.r_id).subscribe(data=>{
+             
+               console.log("You and"+ friend.f_name+" have a match for Restaurant:"+data.name+" in "+data.location);
+            })
+            
+          }
+        }
+      }
+     console.log(this.isMatch);
+      if(!this.isMatch){
+       console.log("No matching restaurant found from your friend "+friend.f_name)
+      }
+    })
+    // this.goToRestaurantDisplay(friend)
+  
+}
   // onMatch(event, friend){
   //   this.isMatch=false;
   //   this.userService.getUser(friend.f_id).subscribe(data=>{
@@ -52,9 +76,7 @@ export class ProfileComponent implements OnInit {
   //   })
   //   // this.goToRestaurantDisplay(friend)
   // }
-
-  goToRestaurantDisplay(friend){
-    
+  goToRestaurantDisplay(){
     this.router.navigate(['/display'])
     
   }
