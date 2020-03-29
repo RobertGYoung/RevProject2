@@ -20,11 +20,18 @@ export class AddFriendComponent implements OnInit {
   currentUser;
   addFriendMessage: string="";
 
-  
+  isFriendAdded=false;
+  friendList;
   constructor(private userService: UserService, private friendService: FriendService) { }
 
   ngOnInit(): void {
     this.currentUser= JSON.parse(localStorage.getItem('User'));
+    this.friendService.getFriendList().subscribe(data=>{
+      this.friendList = data;
+      
+    })
+
+    
   }
 
   onSubmit(){
@@ -32,7 +39,7 @@ export class AddFriendComponent implements OnInit {
        this.userName = data.username;
        this.userId= data.id;
        this.userLocation=data.location;
-       this.friend.f_id=data.id;
+       this.friend.f_id=this.currentUser.id;
        this.friend.f_name=data.username;
        this.errorMessage="";
        this.submitted = true;
@@ -42,21 +49,35 @@ export class AddFriendComponent implements OnInit {
        this.errorMessage="This user is not found";
      })
      
+     this.addFriendMessage="";
+     this.errorMessage="";
      
   }
 
-  onAddFriend(){
-    this.friendService.createFriend(this.currentUser.id, this.friend ).subscribe(data=>{
-      if(this.userName.username == undefined){
-        this.addFriendMessage=`This user is already in your friendlist.`;
-      }else{
-        this.addFriendMessage=`${this.userName.username} has been added to your friendlist.`;
+  onAddFriend(){  
+    this.isFriendAdded=false;
+    console.log(this.userId);
+    if(this.friendList.length <1){
+        this.addFriend();
+    }
+    for(let friend of this.friendList){
+      if(friend.f_name ==this.userName && friend.f_id==this.currentUser.id){
+      this.addFriendMessage=`This user is already in your friendlist.`;
+      this.isFriendAdded=true;
       }
-      
-    },error=>{
-      this.addFriendMessage="error occurred, friend did not added."
-    })
+    }
 
+    if(!this.isFriendAdded){
+      this.addFriend();
+    }
+  }
+
+  addFriend(){
+    this.friendService.createFriend(this.currentUser.id, this.friend ).subscribe(data=>{
+      this.addFriendMessage=`${this.userName} has been added to your friendlist.`;   
+    }, error=>{
+      this.addFriendMessage="An error occurred, user did not added."
+    })
   }
 
 }
