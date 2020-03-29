@@ -8,10 +8,10 @@ import { User } from './user';
 })
 
 export class UserService {
-  
+
   private baseUrl = 'http://localhost:9090/api/v1/users';
   currentUser:User;
-  
+
   constructor(private http: HttpClient) { }
   getUser(id: number): Observable<any> {
     return this.http.get(`${this.baseUrl}/${id}`);
@@ -27,6 +27,10 @@ export class UserService {
 
   patchUser(id: number, value: any): Observable<Object> {
     return this.http.patch(`${this.baseUrl}/${id}`, value);
+  }
+
+  deleteUserLikes(id: number){
+    return this.http.delete(`${this.baseUrl}/${id}/likes`)
   }
 
   deleteUser(id: number): Observable<any> {

@@ -18,6 +18,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { CurrentUserDetailsComponent } from './current-user-details/current-user-details.component';
 import { PasswordResetComponent } from './password-reset/password-reset.component';
 import { RestaurantDisplayComponent } from './restaurant-display/restaurant-display.component';
+import { ClearLikesComponent } from './clear-likes/clear-likes.component';
 
 
 
@@ -34,9 +35,10 @@ import { RestaurantDisplayComponent } from './restaurant-display/restaurant-disp
     ProfileComponent,
     CurrentUserDetailsComponent,
     PasswordResetComponent,
-    RestaurantDisplayComponent
+    RestaurantDisplayComponent,
+    ClearLikesComponent
 
-    
+
   ],
   imports: [
     BrowserModule,

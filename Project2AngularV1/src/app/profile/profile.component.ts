@@ -3,7 +3,6 @@ import { UserService } from '../user.service';
 import { User } from '../user';
 import { Friend } from '../friend';
 import {RestaurantService} from '../restaurant.service';
-
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -19,7 +18,7 @@ export class ProfileComponent implements OnInit {
     this.currentUser= JSON.parse(localStorage.getItem('User'));
     this.friends=this.currentUser.friends;
   }
- 
+
   onMatch(event, friend){
     this.isMatch=false;
     this.userService.getUser(friend.f_id).subscribe(data=>{
@@ -30,10 +29,10 @@ export class ProfileComponent implements OnInit {
           if(friendLike.r_id == userLike.r_id){
             this.isMatch=true;
             this.restaurantService.getRestaurant(friendLike.r_id).subscribe(data=>{
-             
+
               alert(`You and ${friend.f_name} have a match for Restaurant: ${data.name} in ${data.location}`);
             })
-            
+
           }
         }
       }
@@ -42,9 +41,9 @@ export class ProfileComponent implements OnInit {
         alert("No matching restaurant found from your friend "+friend.f_name)
       }
     })
-    
 
-   
+
+
 
   }
 
