@@ -6,10 +6,10 @@
 <h1>Add a friend</h1>
 <form #form='ngForm' ngNativeValidate (ngSubmit)="onSubmit()" >
     <div class="form-group">
-<input class="form-controll" type="number" placeholder="search by id" name="user" required [(ngModel)]="user.id"><br/>
+<input class="form-control-lg" type="number" placeholder="Friend's UserID" name="user" required [(ngModel)]="user.id"><br/>
 <br/>
 </div>
-<button type="submit">Search</button>
+<button type="submit" class="btn-success btn">Search</button>
 </form>
 <br/>
 <h3><p style="color: crimson;">{{errorMessage}}</p></h3>
@@ -23,5 +23,7 @@
     </div>
   </div>
   <br/>
- <h3><p style="color: crimson;">{{addFriendMessage}}</p></h3> 
+ <h3><p [hidden]="!isFriendAdded" style="color: crimson;">{{addFriendMessage}}</p></h3> 
+ <h3><p [hidden]="isFriendAdded" class="text-success">{{addFriendMessage}} </p></h3> 
+ <button class="btn btn-warning" routerLink="/dashboard">Back</button>
 </div>

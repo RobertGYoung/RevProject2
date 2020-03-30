@@ -18,6 +18,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { CurrentUserDetailsComponent } from './current-user-details/current-user-details.component';
 import { PasswordResetComponent } from './password-reset/password-reset.component';
 import { RestaurantDisplayComponent } from './restaurant-display/restaurant-display.component';
+import { UserService} from './user.service';
 import { ClearLikesComponent } from './clear-likes/clear-likes.component';
 
 
@@ -46,7 +47,7 @@ import { ClearLikesComponent } from './clear-likes/clear-likes.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

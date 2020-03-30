@@ -24,13 +24,11 @@ export class RegisterComponent implements OnInit {
     this.userService.createUser(this.user)
       .subscribe(data => console.log(data), error => console.log(error));
     this.user = new User();
-    // this.gotoList();
+  
   }
   onSubmit() {
     this.submitted = true;
     this.save();    
   }
-  // gotoList() {
-  //   this.router.navigate(['/login']);
-  // }
+
 }

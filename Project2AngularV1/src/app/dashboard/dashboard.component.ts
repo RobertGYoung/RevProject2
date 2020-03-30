@@ -17,15 +17,9 @@ export class DashboardComponent implements OnInit {
   }
  
   ngOnInit(): void {
-    this.route.paramMap
-      .subscribe(params => {
-
-        
-        this.currentUser= JSON.parse(localStorage.getItem('User'));
+    this.currentUser= JSON.parse(localStorage.getItem('User'));
         localStorage.setItem('Friends', JSON.stringify(this.currentUser.friends));
-        
-        //console.log(this.currentUser)
-      });
+
       }
     }
   

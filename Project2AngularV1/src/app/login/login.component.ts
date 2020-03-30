@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.userList= this.userService.getUserList().subscribe();
-
+    localStorage.clear();
   }
 
   loginUser(event){
@@ -32,8 +32,6 @@ export class LoginComponent implements OnInit {
                 if(this.user.username==obj.username
                   &&this.user.password==obj.password){
                     this.user=obj;
-                    // this.user.id=obj.id;
-                    // this.user.location=obj.location;
                     console.log(this.user.location)
                     this.userService.saveUserToSession(this.user);
                     localStorage.setItem('User', JSON.stringify(this.userService.currentUser));

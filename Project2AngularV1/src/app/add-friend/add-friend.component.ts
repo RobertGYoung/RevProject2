@@ -21,21 +21,16 @@ export class AddFriendComponent implements OnInit {
   addFriendMessage: string="";
 
   isFriendAdded=false;
-  friendList;
+  allFriendList;
   constructor(private userService: UserService, private friendService: FriendService) { }
 
   ngOnInit(): void {
     this.currentUser= JSON.parse(localStorage.getItem('User'));
 
-    this.friendService.getFriendList().subscribe(data=>{
-      this.friendList = data;
-      console.log(this.friendList)
-      this.currentUser.friends=this.friendList
+     this.friendService.getFriendList().subscribe(data=>{
+      this.allFriendList = data;
     })
-
-    
   }
-
   onSubmit(){
       this.userService.getUser(this.user.id).subscribe(data=>{
        this.friendName = data.username;
@@ -46,27 +41,18 @@ export class AddFriendComponent implements OnInit {
        this.friend.c_id=this.currentUser.id;
        this.errorMessage="";
        this.submitted = true;
-       //local storage
-     
-
      },error =>{
        this.submitted=false;
        this.addFriendMessage="";
        this.errorMessage="This user is not found";
      })
-     
      this.addFriendMessage="";
      this.errorMessage="";
-     
   }
 
   onAddFriend(){  
-    this.isFriendAdded=false;
-    // if(this.friendList.length <1){
-    //     this.addFriend();
-    // }
-    for(let friend of this.friendList){
-      if(friend.f_name ==this.friend.f_name && friend.c_id==this.currentUser.id){
+    for(let friend of this.currentUser.friends){
+      if(friend.f_name ==this.friend.f_name && friend.c_id==this.currentUser.id ){
       this.addFriendMessage=`This user is already in your friendlist.`;
       this.isFriendAdded=true;
       }
@@ -76,17 +62,15 @@ export class AddFriendComponent implements OnInit {
       this.addFriend();
     }
   }
-
   addFriend(){
     this.friendService.createFriend(this.currentUser.id, this.friend ).subscribe(data=>{
       this.addFriendMessage=`${this.friendName} has been added to your friendlist.`; 
-
+      this.currentUser.friends.push(this.friend);
+    localStorage.setItem('User', JSON.stringify(this.currentUser))
+    console.log((JSON.parse(localStorage.getItem('User'))).friends)
     }, error=>{
       this.addFriendMessage="An error occurred, user did not added."
     })
-    // this.friendList.push(this.friend)
-    this.currentUser.friends.push(this.friend);
-    localStorage.setItem('User', JSON.stringify(this.currentUser))
   }
 
 }
