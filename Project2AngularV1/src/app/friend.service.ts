@@ -6,6 +6,7 @@ import { UserService } from './user.service';
 import { User } from './user';
 import { RestaurantService } from './restaurant.service';
 import { Restaurant } from './restaurant';
+import { Like } from './like';
 @Injectable({
   providedIn: 'root'
 })
@@ -41,10 +42,7 @@ export class FriendService {
     this.userService.getUser(friend.f_id).subscribe(data=>{
       
       for(let friendLike of data.likes){
-        //console.log(friendLike)
-        
-         // console.log(userLike)
-          if(friendLike.r_id == likeRid){
+          if(friendLike.r_id == likeRid&&friendLike.is_liked==true){
             this.isMatch=true;
             this.restaurantService.getRestaurant(friendLike.r_id).subscribe(data=>{
              
@@ -54,11 +52,6 @@ export class FriendService {
           
         }
       }
-    //  console.log(this.isMatch);
-      // if(!this.isMatch){
-      //   alert("No matching restaurant found from your friend "+friend.f_name)
-      // }
     })
-    // this.goToRestaurantDisplay(friend)
   }
 }

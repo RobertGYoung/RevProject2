@@ -18,7 +18,6 @@ export class PasswordResetComponent implements OnInit {
 
   onSubmit(){
 
-    // console.log(this.userDetail.id +"-----"+this.userDetail.password);
     this.userService.patchUser(this.userDetail.id, this.userDetail)
     .subscribe(
        data => console.log(data), error => console.log(error)

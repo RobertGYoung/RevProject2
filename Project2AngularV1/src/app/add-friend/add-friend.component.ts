@@ -27,21 +27,10 @@ export class AddFriendComponent implements OnInit {
   ngOnInit(): void {
     this.currentUser= JSON.parse(localStorage.getItem('User'));
 
-    this.friendService.getFriendList().subscribe(data=>{
+     this.friendService.getFriendList().subscribe(data=>{
       this.allFriendList = data;
-      //console.log(this.friendList)
-      // for(let allFriend of this.allFriendList){
-      //   for(let friend of this.currentUser.friends)
-      //   if(allFriend.f_id==this.currentUser.id){
-      //      this.currentUser.friends.push(friend)
-      //   }
-      // }
-    
     })
-
-    
   }
-
   onSubmit(){
       this.userService.getUser(this.user.id).subscribe(data=>{
        this.friendName = data.username;
@@ -52,25 +41,16 @@ export class AddFriendComponent implements OnInit {
        this.friend.c_id=this.currentUser.id;
        this.errorMessage="";
        this.submitted = true;
-       //local storage
-     
-
      },error =>{
        this.submitted=false;
        this.addFriendMessage="";
        this.errorMessage="This user is not found";
      })
-     
      this.addFriendMessage="";
      this.errorMessage="";
-     
   }
 
   onAddFriend(){  
-    this.isFriendAdded=false;
-    // if(this.friendList.length <1){
-    //     this.addFriend();
-    // }
     for(let friend of this.currentUser.friends){
       if(friend.f_name ==this.friend.f_name && friend.c_id==this.currentUser.id ){
       this.addFriendMessage=`This user is already in your friendlist.`;
@@ -82,7 +62,6 @@ export class AddFriendComponent implements OnInit {
       this.addFriend();
     }
   }
-
   addFriend(){
     this.friendService.createFriend(this.currentUser.id, this.friend ).subscribe(data=>{
       this.addFriendMessage=`${this.friendName} has been added to your friendlist.`; 
@@ -92,8 +71,6 @@ export class AddFriendComponent implements OnInit {
     }, error=>{
       this.addFriendMessage="An error occurred, user did not added."
     })
-    // this.friendList.push(this.friend)
-    
   }
 
 }
